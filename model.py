@@ -23,8 +23,8 @@ class Brand(db.Model):
     headquaters = db.Column(db.String(50))
     discontinued = db.Column(db.Integer)
 
-    def __repr__(self):
-        return "<Brand, id:{id} name:{name}>".format(id=self.brand_id, name=self.name)
+    # def __repr__(self):
+        # return ("<Brand, id:{} name:{}>".format(self.brand_id, self.name))
 
 
 class Model(db.Model):
@@ -37,10 +37,10 @@ class Model(db.Model):
     brand_id = db.Column(db.String(5), db.ForeignKey("brands.brand_id"))
     name = db.Column(db.String(50))
 
-    brand = db.Relationship("Brand", backref=db.backref("brands"))
+    brand = db.relationship("Brand", backref=db.backref("brands"))
 
-    def __repr__(self):
-        reutrn "<Model, id:{id} name:{name}>".format(id=self.model_id, name=self.name)
+    # def __repr__(self):
+        # reutrn "<Model, id:{id} name:{name}>".format(id=self.model_id, name=self.name)
 
 
 ##############################################################################
