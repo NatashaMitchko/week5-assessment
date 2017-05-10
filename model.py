@@ -20,11 +20,11 @@ class Brand(db.Model):
     brand_id = db.Column(db.String(5), nullable=False, primary_key=True)
     name = db.Column(db.String(50), nullable=False)
     founded = db.Column(db.Integer)
-    headquaters = db.Column(db.String(50))
+    headquarters = db.Column(db.String(50))
     discontinued = db.Column(db.Integer)
 
-    # def __repr__(self):
-        # return ("<Brand, id:{} name:{}>".format(self.brand_id, self.name))
+    def __repr__(self):
+        return ("<Brand, id:{} name:{}>".format(self.brand_id, self.name))
 
 
 class Model(db.Model):
@@ -34,13 +34,13 @@ class Model(db.Model):
 
     model_id = db.Column(db.Integer, nullable=False, autoincrement=True, primary_key=True)
     year = db.Column(db.Integer, nullable=False)
-    brand_id = db.Column(db.String(5), db.ForeignKey("brands.brand_id"))
+    brand_id = db.Column(db.String(5), db.ForeignKey('brands.brand_id'))
     name = db.Column(db.String(50))
 
-    brand = db.relationship("Brand", backref=db.backref("brands"))
+    brand = db.relationship("Brand", backref=db.backref("models"))
 
-    # def __repr__(self):
-        # reutrn "<Model, id:{id} name:{name}>".format(id=self.model_id, name=self.name)
+    def __repr__(self):
+        return ("<Model, id:{id} name:{name}>".format(id=self.model_id, name=self.name))
 
 
 ##############################################################################
